@@ -1,0 +1,245 @@
+<html>
+<head>
+<title> Infinite Loop </title>
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+function start(){
+sjs.open("target",800,500);
+
+	var background = new sjs.Image("Images/background.png");
+	background.setSize(2500,sjs.getHeight());
+
+	sjs.loadImageArray(localStorage.getItem('level'));
+
+	//Player
+	var player = new sjs.Image("Images/r_idle.png");
+	player.type = "player";
+	player.setSize(30,42);
+	player.setGravity(5); //subject to change
+	player.bottom();
+	player.friction = .3;
+	player.noBounds = true;
+
+	sjs.scrollable(player,background);
+
+	//Sword
+	var swordSpawn = true;
+	sjs.keyDown(X_KEY, function(){	
+		if(swordSpawn == true){	
+			swordSpawn = false;
+			if(r_facing == true){
+				var sword = new sjs.Image("Images/r_sword.png");
+				sword.offset(30+player.getX(),player.getY());
+			} else {
+				var sword = new sjs.Image("Images/l_sword.png");
+				sword.offset(-60+player.getX(),player.getY());
+			}
+
+			sword.follow(player);
+			sword.setSize(57,24);
+			sword.type = "sword";
+
+			setTimeout(function(){
+				sword.destroy();
+			},200);
+
+			setTimeout(function(){
+				swordSpawn = true;
+			},1000);			
+		}
+	});
+
+	//Player Controls
+	var r_images = ["Images/r_walk1.png", "Images/r_walk2.png", "Images/r_walk3.png"];
+
+	var l_images = ["Images/l_walk1.png", "Images/l_walk2.png", "Images/l_walk3.png"];
+
+	var r_facing = true;
+	var r_track = 0;
+	var l_track = 0;
+
+	//Directional Facing
+	sjs.keyDown(RIGHT_KEY, function(){
+		r_facing = true;
+	});
+
+	sjs.keyDown(LEFT_KEY, function(){
+		r_facing = false;
+	});
+
+	//Jumping
+	var canJump = true;
+	sjs.keyDown(SPACE_KEY, function(){
+		if(canJump == true){
+			player.pushUp(27);
+			canJump = false;
+			if(r_facing == true){
+				player.setImage("Images/r_jump1.png");
+			} else {
+				player.setImage("Images/l_jump1.png");
+			}
+		}
+	});
+
+
+	if(canJump == true){
+		window.addEventListener("keyup", function(e){
+			if(e.keyCode == RIGHT_KEY){
+				player.setImage("Images/r_idle.png");
+			} else if(e.keyCode == LEFT_KEY){
+				player.setImage("Images/l_idle.png");
+			}
+		});
+	}
+
+
+	//Jetpack
+	var jetpackOn = false;
+	var fuel = 15;
+	var fuel_txt = new sjs.Text("Fuel 15",20,"red");
+	fuel_txt.right();
+	fuel_txt.fixed = true;
+
+	sjs.keyDown(UP_KEY, function(){
+		if(canJump == false && fuel >> 0){
+			player.pushUp(10);
+			jetpackOn = true;
+			fuel = fuel - 1;
+			fuel_txt.setText("Fuel "+fuel);
+
+			if(r_facing == true){
+				player.setImage("Images/r_jump2.png");
+			} else {
+				player.setImage("Images/l_jump2.png");
+			}
+
+			setTimeout(function(){
+				jetpackOn = false;
+				if(r_facing == true){
+					player.setImage("Images/r_jump1.png");
+				} else {
+					player.setImage("Images/l_jump1.png");
+				}
+			},300);
+		}
+	});
+
+	//Ground Movement part 2
+	sjs.keyDown(RIGHT_KEY, function(){
+		r_facing = true;
+		player.pushRight(2);
+		if(canJump == true){
+			r_track = r_track + 1;
+			player.setImage(r_images[r_track]);
+			if(r_track == 2){
+				r_track = 0;
+			}
+		}
+	}); //end Right key
+
+	sjs.keyDown(LEFT_KEY, function(){
+		r_facing = false;
+		player.pushLeft(2);
+		if(canJump == true){
+			l_track = l_track + 1;
+			player.setImage(l_images[l_track]);
+			if(l_track == 2){
+				l_track = 0;
+			}
+		}	
+	}); //end Left key
+
+	var score = 0;
+	var score_txt = new sjs.Text("Score: 0",18,"red");
+	score_txt.setText("Score: "+score);
+	score_txt.fixed = true;
+
+	//onHit functions
+	sjs.onHit("player","platform", function(x,y){
+		sjs.stoppedBy(x,y);
+		if(x.isAboveOf){
+			if(canJump == false){
+				canJump = true;
+				r_track = 0;
+				l_track = 0;
+				fuel = 15;
+				fuel_txt.setText("Fuel 15");
+			}
+		}
+	});
+
+	sjs.onHit("player",["right_screen",'left_screen',"top_screen"],function(x,y){
+		sjs.stoppedBy(x,y);
+	});
+
+	sjs.onHit("player","bottom_screen",function(x,y){
+		sjs.stoppedBy(x,y);
+		if(r_facing == true){
+			player.setImage("Images/r_idle.png");
+		} else {
+			player.setImage("Images/l_idle.png");
+		}
+		canJump = true;
+		r_track = 0;
+		l_track = 0;
+		fuel = 15;
+		fuel_txt.setText("Fuel 15");
+	});
+
+		sjs.onHit("enemy","bottom_screen",function(x,y){
+		sjs.stoppedBy(x,y);
+	});
+
+	sjs.onHit("enemy",["left_screen","right_screen"], function(x,y){
+		sjs.bounceOff(x,y);
+	}); 
+
+	sjs.onHit("enemy","platform",function(x,y){
+		if(x.isAboveOf(y) == true){
+			sjs.stoppedBy(x,y);
+		} else {
+			sjs.bounceOff(x,y);
+		}
+	});
+
+	sjs.onHit("player","enemy",function(){
+		window.location = "test.html"; //change in level.html
+	});
+
+	sjs.onHit("sword","enemy", function(x,y){
+		y.destroy();
+		score = score + 1;
+		localStorage.setItem("score",score);
+		score_txt.setText("Score: "+score);
+	});
+
+	sjs.onHit("player","spikes",function(){
+		window.location = "test.html"; //change in level.html
+	});
+
+	var flagOn = true;
+	sjs.onHit("player","flag",function(x,y){
+		x.stop();
+		if(flagOn == true){
+			flagOn = false;
+			setTimeout(function(){
+				y.setImage("Images/flag_none.png");
+		},800);
+			setTimeout(function(){
+				y.setImage("Images/flag_win.png");
+		},1600);
+			setTimeout(function(){
+				window.location = "win.html"; //change in level.html
+		},2400);
+		} //end if statement
+	});
+
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> Infinite Loop </h1>
+
+<div id="target" style="margin:auto;background:grey;"></div>
+</body>
+</html>

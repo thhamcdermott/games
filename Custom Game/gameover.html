@@ -1,0 +1,35 @@
+<html>
+<head>
+<title> You Lose! </title>
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+function start(){
+sjs.open("target",500,400);
+
+	var lose_txt = new sjs.Text("Game Over!",40,"red");
+	lose_txt.center().offset(0,-30);
+
+	var restartBtn = new sjs.Button("Menu",function(){
+		window.location = "index.html";
+	}); restartBtn.center().offset(0,60);
+
+	var score_txt = new sjs.Text("Score: 0", 22,"red");
+	score_txt.setText("Score: "+localStorage.getItem("score"));
+
+	var level1Btn = new sjs.Button("Level 1", function(){
+		window.location = "level1.html";
+	}); level1Btn.center().offset(0,100);
+
+	var infiniteLoopBtn = new sjs.Button("Infinite Loop (No Game Over)",function(){
+		window.location = "infiniteloop.html";
+	}); infiniteLoopBtn.center().offset(0,140);
+
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> You Lose! </h1>
+
+<div id="target" style="margin:auto;background:black;"></div>
+</body>
+</html>

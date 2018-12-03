@@ -1,0 +1,245 @@
+<html>
+<head>
+<title> Jetpack </title>
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+function start(){
+sjs.open("target",800,500);
+
+	var background = new sjs.Image("Images/background.png");
+	background.setSize(2500,sjs.getHeight());
+
+	sjs.loadImageArray('[{"width":59,"height":30,"x":564.5,"y":464,"sx":0,"sy":0,"topSpeed":10,"src":"Images/floorspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":500.5,"y":463,"sx":0,"sy":0,"topSpeed":10,"src":"Images/floorspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":437.5,"y":463,"sx":0,"sy":0,"topSpeed":10,"src":"Images/floorspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":376.5,"y":466,"sx":0,"sy":0,"topSpeed":10,"src":"Images/floorspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":310.5,"y":466,"sx":0,"sy":0,"topSpeed":10,"src":"Images/floorspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":247.5,"y":466,"sx":0,"sy":0,"topSpeed":10,"src":"Images/floorspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":98.5,"y":467,"sx":0,"sy":0,"topSpeed":10,"src":"Images/floorspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":592.5928366973822,"y":463,"sx":0,"sy":0,"topSpeed":10,"src":"Images/floorspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":152,"height":30,"x":683.9765806906821,"y":363,"sx":0,"sy":0,"topSpeed":10,"src":"Images/platform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":15,"height":15,"x":665.4765806906821,"y":339.5,"sx":0,"sy":0,"topSpeed":10,"src":"Images/splatform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":15,"height":15,"x":830.4765806906821,"y":333.5,"sx":0,"sy":0,"topSpeed":10,"src":"Images/splatform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":60,"height":60,"x":750.9765806906821,"y":303,"sx":1.5,"sy":0,"ay":1,"topSpeed":10,"src":"Images/r_enemy.gif","type":"enemy","facingLeft":false,"left_img":"Images/l_enemy.gif","right_img":"Images/r_enemy.gif","friction":0,"classType":"Image","noBounds":true},{"width":59,"height":30,"x":705.4344399953721,"y":393,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":757.4344399953721,"y":393,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":30,"height":152,"x":988.8839643820958,"y":348,"sx":0,"sy":0,"topSpeed":10,"src":"Images/wall.png","type":"platform","friction":0.05,"classType":"Image"},{"width":30,"height":152,"x":988.8839643820958,"y":196,"sx":0,"sy":0,"topSpeed":10,"src":"Images/wall.png","type":"platform","friction":0.05,"classType":"Image"},{"width":30,"height":59,"x":959.0993628612886,"y":440,"sx":0,"sy":0,"topSpeed":10,"src":"Images/rwallspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":30,"height":59,"x":958.0993628612886,"y":329.5,"sx":0,"sy":0,"topSpeed":10,"src":"Images/rwallspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":30,"height":59,"x":959.0993628612886,"y":383.5,"sx":0,"sy":0,"topSpeed":10,"src":"Images/rwallspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":30,"height":59,"x":957.0993628612886,"y":213.5,"sx":0,"sy":0,"topSpeed":10,"src":"Images/rwallspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":30,"height":59,"x":958.0993628612886,"y":271.5,"sx":0,"sy":0,"topSpeed":10,"src":"Images/rwallspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":30,"height":59,"x":958.0993628612886,"y":185.5,"sx":0,"sy":0,"topSpeed":10,"src":"Images/rwallspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":30,"height":152,"x":989.0993628612886,"y":157,"sx":0,"sy":0,"topSpeed":10,"src":"Images/wall.png","type":"platform","friction":0.05,"classType":"Image"},{"width":152,"height":30,"x":867.0993628612886,"y":154,"sx":0,"sy":0,"topSpeed":10,"src":"Images/platform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":891.5993628612886,"y":186,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":15,"height":15,"x":585.9965645206822,"y":176.5,"sx":0,"sy":0,"topSpeed":10,"src":"Images/splatform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":15,"height":15,"x":509.9965645206822,"y":173.5,"sx":0,"sy":0,"topSpeed":10,"src":"Images/splatform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":15,"height":15,"x":390.4363611922554,"y":182.5,"sx":0,"sy":0,"topSpeed":10,"src":"Images/splatform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":152,"height":30,"x":158.9363611922554,"y":145,"sx":0,"sy":0,"topSpeed":10,"src":"Images/platform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":15,"height":15,"x":150.4363611922554,"y":123.5,"sx":0,"sy":0,"topSpeed":10,"src":"Images/splatform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":15,"height":15,"x":309.4363611922554,"y":128.5,"sx":0,"sy":0,"topSpeed":10,"src":"Images/splatform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":60,"height":60,"x":179.4363611922554,"y":85,"sx":-5,"sy":1,"ay":1,"topSpeed":10,"src":"Images/l_enemy.gif","type":"enemy","facingLeft":true,"left_img":"Images/l_enemy.gif","right_img":"Images/r_enemy.gif","friction":0,"classType":"Image","noBounds":true},{"width":60,"height":60,"x":175.4363611922554,"y":85,"sx":5,"sy":1,"ay":1,"topSpeed":10,"src":"Images/r_enemy.gif","type":"enemy","facingLeft":false,"left_img":"Images/l_enemy.gif","right_img":"Images/r_enemy.gif","friction":0,"classType":"Image","noBounds":true},{"width":60,"height":60,"x":204.4363611922554,"y":85,"sx":1.5,"sy":1,"ay":1,"topSpeed":10,"src":"Images/r_enemy.gif","type":"enemy","facingLeft":false,"left_img":"Images/l_enemy.gif","right_img":"Images/r_enemy.gif","friction":0,"classType":"Image","noBounds":true},{"width":31,"height":80,"x":91.53263336895537,"y":31,"sx":0,"sy":0,"topSpeed":10,"src":"Images/flag_bad.png","type":"flag","friction":0.05,"classType":"Image"},{"width":152,"height":30,"x":994.5398740506957,"y":153,"sx":0,"sy":0,"topSpeed":10,"src":"Images/platform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":423.9814582139485,"y":1,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":15,"height":15,"x":540.698198618177,"y":223.5,"sx":0,"sy":0,"topSpeed":10,"src":"Images/splatform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":60,"height":60,"x":524.9965645206822,"y":163.5,"sx":1.5,"sy":1,"ay":1,"topSpeed":10,"src":"Images/r_enemy.gif","type":"enemy","facingLeft":false,"left_img":"Images/l_enemy.gif","right_img":"Images/r_enemy.gif","friction":0,"classType":"Image","noBounds":true},{"width":59,"height":30,"x":1065.818503602099,"y":185,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1018.8185036020991,"y":184,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":30,"height":152,"x":1117.318503602099,"y":153,"sx":0,"sy":0,"topSpeed":10,"src":"Images/wall.png","type":"platform","friction":0.05,"classType":"Image"},{"width":152,"height":30,"x":1083.318503602099,"y":306,"sx":0,"sy":0,"topSpeed":10,"src":"Images/platform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":31,"height":80,"x":1088.818503602099,"y":223,"sx":0,"sy":0,"topSpeed":10,"src":"Images/flag_bad.png","type":"flag","friction":0.05,"classType":"Image"},{"width":152,"height":30,"x":1191.256754432099,"y":307,"sx":0,"sy":0,"topSpeed":10,"src":"Images/platform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":152,"height":30,"x":1310.256754432099,"y":308,"sx":0,"sy":0,"topSpeed":10,"src":"Images/platform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":152,"height":30,"x":1425.0186626806646,"y":309,"sx":0,"sy":0,"topSpeed":10,"src":"Images/platform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":152,"height":30,"x":1524.0186626806646,"y":310,"sx":0,"sy":0,"topSpeed":10,"src":"Images/platform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":152,"height":30,"x":1615.0186626806646,"y":309,"sx":0,"sy":0,"topSpeed":10,"src":"Images/platform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":60,"height":60,"x":1587.3239105656567,"y":249,"sx":-5,"sy":0,"ay":1,"topSpeed":10,"src":"Images/l_enemy.gif","type":"enemy","facingLeft":true,"left_img":"Images/l_enemy.gif","right_img":"Images/r_enemy.gif","friction":0,"classType":"Image","noBounds":true},{"width":30,"height":152,"x":1737.3239105656567,"y":187,"sx":0,"sy":0,"topSpeed":10,"src":"Images/wall.png","type":"platform","friction":0.05,"classType":"Image"},{"width":15,"height":15,"x":1422.3363680336852,"y":299.5,"sx":0,"sy":0,"topSpeed":10,"src":"Images/splatform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":60,"height":60,"x":1227.318503602099,"y":246,"sx":5,"sy":0,"ay":1,"topSpeed":10,"src":"Images/r_enemy.gif","type":"enemy","facingLeft":false,"left_img":"Images/l_enemy.gif","right_img":"Images/r_enemy.gif","friction":0,"classType":"Image","noBounds":true},{"width":15,"height":15,"x":1558.3363680336852,"y":306.5,"sx":0,"sy":0,"topSpeed":10,"src":"Images/splatform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":60,"height":60,"x":1465.3363680336852,"y":249,"sx":-1.5,"sy":1,"ay":1,"topSpeed":10,"src":"Images/l_enemy.gif","type":"enemy","facingLeft":true,"left_img":"Images/l_enemy.gif","right_img":"Images/r_enemy.gif","friction":0,"classType":"Image","noBounds":true},{"width":30,"height":59,"x":1146.7835166087298,"y":164.5,"sx":0,"sy":0,"topSpeed":10,"src":"Images/lwallspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":30,"height":59,"x":1148.7835166087298,"y":230.5,"sx":0,"sy":0,"topSpeed":10,"src":"Images/lwallspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1689.4180269074511,"y":342,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1413.4779760325728,"y":343,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1468.392962773807,"y":343,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1526.4779760325728,"y":343,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1578.4779760325728,"y":342,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1633.557992202573,"y":341,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":152,"height":30,"x":1736.8986605599453,"y":310,"sx":0,"sy":0,"topSpeed":10,"src":"Images/platform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":152,"height":30,"x":1869.8986605599453,"y":310,"sx":0,"sy":0,"topSpeed":10,"src":"Images/platform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1356.3576525655546,"y":341,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1296.3576525655546,"y":341,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1242.3576525655546,"y":337,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1186.3539543041304,"y":339,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1127.289152426418,"y":341,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1097.289152426418,"y":341,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":60,"height":60,"x":1963.8839643820957,"y":440,"sx":5,"sy":1,"ay":1,"topSpeed":10,"src":"Images/r_enemy.gif","type":"enemy","facingLeft":false,"left_img":"Images/l_enemy.gif","right_img":"Images/r_enemy.gif","friction":0,"classType":"Image","noBounds":true},{"width":60,"height":60,"x":1280,"y":440,"sx":-5,"sy":1,"ay":1,"topSpeed":10,"src":"Images/l_enemy.gif","type":"enemy","facingLeft":true,"left_img":"Images/l_enemy.gif","right_img":"Images/r_enemy.gif","friction":0,"classType":"Image","noBounds":true},{"width":60,"height":60,"x":1775,"y":440,"sx":-5,"sy":0,"ay":1,"topSpeed":10,"src":"Images/l_enemy.gif","type":"enemy","facingLeft":true,"left_img":"Images/l_enemy.gif","right_img":"Images/r_enemy.gif","friction":0,"classType":"Image","noBounds":true},{"width":60,"height":60,"x":1860.3839643820957,"y":440,"sx":1.5,"sy":1,"ay":1,"topSpeed":10,"src":"Images/r_enemy.gif","type":"enemy","facingLeft":false,"left_img":"Images/l_enemy.gif","right_img":"Images/r_enemy.gif","friction":0,"classType":"Image","noBounds":true},{"width":15,"height":15,"x":2277.5,"y":211.5,"sx":0,"sy":0,"topSpeed":10,"src":"Images/splatform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":152,"height":30,"x":2298,"y":235,"sx":0,"sy":0,"topSpeed":10,"src":"Images/platform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":15,"height":15,"x":2449.5,"y":211.5,"sx":0,"sy":0,"topSpeed":10,"src":"Images/splatform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":60,"height":60,"x":2332.5,"y":175,"sx":-1.5,"sy":0,"ay":1,"topSpeed":10,"src":"Images/l_enemy.gif","type":"enemy","facingLeft":true,"left_img":"Images/l_enemy.gif","right_img":"Images/r_enemy.gif","friction":0,"classType":"Image","noBounds":true},{"width":60,"height":60,"x":2348,"y":175,"sx":1.5,"sy":0,"ay":1,"topSpeed":10,"src":"Images/r_enemy.gif","type":"enemy","facingLeft":false,"left_img":"Images/l_enemy.gif","right_img":"Images/r_enemy.gif","friction":0,"classType":"Image","noBounds":true},{"width":59,"height":30,"x":487.74701310313986,"y":0,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":554.2470131031398,"y":1,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":319.24701310313986,"y":211,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":409.24701310313986,"y":217,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":618.2639979243834,"y":3,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":152,"height":30,"x":11,"y":146,"sx":0,"sy":0,"topSpeed":10,"src":"Images/platform.png","type":"platform","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":236,"y":181,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":50.5,"y":177,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":104.5,"y":174,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":176.5,"y":179,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":20,"y":179,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":374.9346404752653,"y":0,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":324.9346404752653,"y":0,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":277.9346404752653,"y":0,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":820.2776664559908,"y":1,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":751.1769740803218,"y":5,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":689.1769740803218,"y":7,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":878.1769740803218,"y":4,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":938.1769740803218,"y":4,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":997.1769740803218,"y":3,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1059.2553619696744,"y":2,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1719.8631029737662,"y":4,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1130.2353950125555,"y":2,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":30,"height":59,"x":1704.7727272858308,"y":248,"sx":0,"sy":0,"topSpeed":10,"src":"Images/rwallspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":30,"height":59,"x":1707.7727272858308,"y":191.5,"sx":0,"sy":0,"topSpeed":10,"src":"Images/rwallspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1755.268289759582,"y":341,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1819.268289759582,"y":342,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1875.268289759582,"y":342,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1934.268289759582,"y":342,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":2316.5,"y":11,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1943.5,"y":10,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":2108.5,"y":9,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":2045.4999999999998,"y":8,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1985.5,"y":13,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1884.5,"y":10,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":1819.5,"y":5,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":2231.5,"y":11,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":2169.5,"y":12,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"},{"width":59,"height":30,"x":2281.5,"y":16,"sx":0,"sy":0,"topSpeed":10,"src":"Images/ceilingspikes.png","type":"spikes","friction":0.05,"classType":"Image"}]');
+
+	//Player
+	var player = new sjs.Image("Images/r_idle.png");
+	player.type = "player";
+	player.setSize(30,42);
+	player.setGravity(5); //subject to change
+	player.bottom();
+	player.friction = .3;
+	player.noBounds = true;
+
+	sjs.scrollable(player,background);
+
+	//Sword
+	var swordSpawn = true;
+	sjs.keyDown(X_KEY, function(){	
+		if(swordSpawn == true){	
+			swordSpawn = false;
+			if(r_facing == true){
+				var sword = new sjs.Image("Images/r_sword.png");
+				sword.offset(30+player.getX(),player.getY());
+			} else {
+				var sword = new sjs.Image("Images/l_sword.png");
+				sword.offset(-60+player.getX(),player.getY());
+			}
+
+			sword.follow(player);
+			sword.setSize(57,24);
+			sword.type = "sword";
+
+			setTimeout(function(){
+				sword.destroy();
+			},200);
+
+			setTimeout(function(){
+				swordSpawn = true;
+			},1000);			
+		}
+	});
+
+	//Player Controls
+	var r_images = ["Images/r_walk1.png", "Images/r_walk2.png", "Images/r_walk3.png"];
+
+	var l_images = ["Images/l_walk1.png", "Images/l_walk2.png", "Images/l_walk3.png"];
+
+	var r_facing = true;
+	var r_track = 0;
+	var l_track = 0;
+
+	//Directional Facing
+	sjs.keyDown(RIGHT_KEY, function(){
+		r_facing = true;
+	});
+
+	sjs.keyDown(LEFT_KEY, function(){
+		r_facing = false;
+	});
+
+	//Jumping
+	var canJump = true;
+	sjs.keyDown(SPACE_KEY, function(){
+		if(canJump == true){
+			player.pushUp(27);
+			canJump = false;
+			if(r_facing == true){
+				player.setImage("Images/r_jump1.png");
+			} else {
+				player.setImage("Images/l_jump1.png");
+			}
+		}
+	});
+
+
+	if(canJump == true){
+		window.addEventListener("keyup", function(e){
+			if(e.keyCode == RIGHT_KEY){
+				player.setImage("Images/r_idle.png");
+			} else if(e.keyCode == LEFT_KEY){
+				player.setImage("Images/l_idle.png");
+			}
+		});
+	}
+
+
+	//Jetpack
+	var jetpackOn = false;
+	var fuel = 15;
+	var fuel_txt = new sjs.Text("Fuel 15",20,"red");
+	fuel_txt.right().offset(-10,30);
+	fuel_txt.fixed = true;
+
+	sjs.keyDown(UP_KEY, function(){
+		if(canJump == false && fuel >> 0){
+			player.pushUp(10);
+			jetpackOn = true;
+			fuel = fuel - 1;
+			fuel_txt.setText("Fuel "+fuel);
+
+			if(r_facing == true){
+				player.setImage("Images/r_jump2.png");
+			} else {
+				player.setImage("Images/l_jump2.png");
+			}
+
+			setTimeout(function(){
+				jetpackOn = false;
+				if(r_facing == true){
+					player.setImage("Images/r_jump1.png");
+				} else {
+					player.setImage("Images/l_jump1.png");
+				}
+			},300);
+		}
+	});
+
+	//Ground Movement part 2
+	sjs.keyDown(RIGHT_KEY, function(){
+		r_facing = true;
+		player.pushRight(2);
+		if(canJump == true){
+			r_track = r_track + 1;
+			player.setImage(r_images[r_track]);
+			if(r_track == 2){
+				r_track = 0;
+			}
+		}
+	}); //end Right key
+
+	sjs.keyDown(LEFT_KEY, function(){
+		r_facing = false;
+		player.pushLeft(2);
+		if(canJump == true){
+			l_track = l_track + 1;
+			player.setImage(l_images[l_track]);
+			if(l_track == 2){
+				l_track = 0;
+			}
+		}	
+	}); //end Left key
+
+	var score = 0;
+	var score_txt = new sjs.Text("Score: 0",18,"red");
+	score_txt.setText("Score: "+score);
+	score_txt.fixed = true;
+
+	//onHit functions
+	sjs.onHit("player","platform", function(x,y){
+		sjs.stoppedBy(x,y);
+		if(x.isAboveOf){
+			if(canJump == false){
+				canJump = true;
+				r_track = 0;
+				l_track = 0;
+				fuel = 15;
+				fuel_txt.setText("Fuel 15");
+			}
+		}
+	});
+
+	sjs.onHit("player",["right_screen",'left_screen',"top_screen"],function(x,y){
+		sjs.stoppedBy(x,y);
+	});
+
+	sjs.onHit("player","bottom_screen",function(x,y){
+		sjs.stoppedBy(x,y);
+		if(r_facing == true){
+			player.setImage("Images/r_idle.png");
+		} else {
+			player.setImage("Images/l_idle.png");
+		}
+		canJump = true;
+		r_track = 0;
+		l_track = 0;
+		fuel = 15;
+		fuel_txt.setText("Fuel 15")
+	});
+
+		sjs.onHit("enemy","bottom_screen",function(x,y){
+		sjs.stoppedBy(x,y);
+	});
+
+	sjs.onHit("enemy",["left_screen","right_screen"], function(x,y){
+		sjs.bounceOff(x,y);
+	}); 
+
+	sjs.onHit("enemy","platform",function(x,y){
+		if(x.isAboveOf(y) == true){
+			sjs.stoppedBy(x,y);
+		} else {
+			sjs.bounceOff(x,y);
+		}
+	});
+
+	sjs.onHit("player","enemy",function(){
+		window.location = "gameover.html"; 
+	});
+
+	sjs.onHit("sword","enemy", function(x,y){
+		y.destroy();
+		score = score + 1;
+		localStorage.setItem("score",score);
+		score_txt.setText("Score: "+score);
+	});
+
+	sjs.onHit("player","spikes",function(){
+		window.location = "gameover.html"; 
+	});
+
+	var flagOn = true;
+	sjs.onHit("player","flag",function(x,y){
+		x.stop();
+		if(flagOn == true){
+			flagOn = false;
+			setTimeout(function(){
+				y.setImage("Images/flag_none.png");
+		},800);
+			setTimeout(function(){
+				y.setImage("Images/flag_win.png");
+		},1600);
+			setTimeout(function(){
+				window.location = "win.html"; 
+		},2400);
+		} //end if statement
+	});
+
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> Jetpack </h1>
+
+<div id="target" style="margin:auto;background:grey;"></div>
+</body>
+</html>

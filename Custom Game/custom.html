@@ -1,0 +1,364 @@
+<html>
+<head>
+<title> Jetpack </title>
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+var level = [];
+function start(){
+sjs.open("target",800,500);
+
+	var background = new sjs.Image("Images/background.png");
+	background.setSize(2500,sjs.getHeight());
+
+	var testButton = new sjs.Button("Test",function(){
+		localStorage.setItem('level', sjs.saveImageArray(level));
+		window.open("test.html", "_blank");
+	});
+
+	var showButton = new sjs.Button("Show", function(){
+		var output = document.querySelector("#output");
+		output.innerHTML = sjs.saveImageArray(level);
+	}); showButton.offset(75,0);
+
+	//Player
+	var player = new sjs.Image("Images/r_idle.png");
+	player.type = "player";
+	player.setSize(30,42);
+	player.setGravity(5); //subject to change
+	player.bottom();
+	player.friction = .3;
+	player.noBounds = true;
+
+	sjs.scrollable(player,background);
+
+	//Sword
+	var swordSpawn = true;
+	sjs.keyDown(X_KEY, function(){	
+		if(swordSpawn == true){	
+			swordSpawn = false;
+			if(r_facing == true){
+				var sword = new sjs.Image("Images/r_sword.png");
+				sword.offset(30+player.getX(),player.getY());
+			} else {
+				var sword = new sjs.Image("Images/l_sword.png");
+				sword.offset(-60+player.getX(),player.getY());
+			}
+
+			sword.follow(player);
+			sword.setSize(57,24);
+			sword.type = "sword";
+
+			setTimeout(function(){
+				sword.destroy();
+			},200);
+
+			setTimeout(function(){
+				swordSpawn = true;
+			},1000);			
+		}
+	});
+
+	//Player Controls
+	var r_images = ["Images/r_walk1.png", "Images/r_walk2.png", "Images/r_walk3.png"];
+
+	var l_images = ["Images/l_walk1.png", "Images/l_walk2.png", "Images/l_walk3.png"];
+
+	var r_facing = true;
+	var r_track = 0;
+	var l_track = 0;
+
+	//Directional Facing
+	sjs.keyDown(RIGHT_KEY, function(){
+		r_facing = true;
+	});
+
+	sjs.keyDown(LEFT_KEY, function(){
+		r_facing = false;
+	});
+
+	//Jumping
+	var canJump = true;
+	sjs.keyDown(SPACE_KEY, function(){
+		if(canJump == true){
+			player.pushUp(27);
+			canJump = false;
+			if(r_facing == true){
+				player.setImage("Images/r_jump1.png");
+			} else {
+				player.setImage("Images/l_jump1.png");
+			}
+		}
+	});
+
+
+	if(canJump == true){
+		window.addEventListener("keyup", function(e){
+			if(e.keyCode == RIGHT_KEY){
+				player.setImage("Images/r_idle.png");
+			} else if(e.keyCode == LEFT_KEY){
+				player.setImage("Images/l_idle.png");
+			}
+		});
+	}
+
+
+	//Jetpack
+	var jetpackOn = false;
+	var fuel = 15;
+	var fuel_txt = new sjs.Text("Fuel 15",20,"red");
+	fuel_txt.right();
+	fuel_txt.fixed = true;
+
+	sjs.keyDown(UP_KEY, function(){
+		if(canJump == false && fuel >> 0){
+			player.pushUp(10);
+			jetpackOn = true;
+			fuel = fuel - 1;
+			fuel_txt.setText("Fuel "+fuel);
+
+			if(r_facing == true){
+				player.setImage("Images/r_jump2.png");
+			} else {
+				player.setImage("Images/l_jump2.png");
+			}
+
+			setTimeout(function(){
+				jetpackOn = false;
+				if(r_facing == true){
+					player.setImage("Images/r_jump1.png");
+				} else {
+					player.setImage("Images/l_jump1.png");
+				}
+			},300)
+		}
+	});
+
+	//Ground Movement part 2
+	sjs.keyDown(RIGHT_KEY, function(){
+		r_facing = true;
+		player.pushRight(2);
+		if(canJump == true){
+			r_track = r_track + 1;
+			player.setImage(r_images[r_track]);
+			if(r_track == 2){
+				r_track = 0;
+			}
+		}
+	}); //end Right key
+
+	sjs.keyDown(LEFT_KEY, function(){
+		r_facing = false;
+		player.pushLeft(2);
+		if(canJump == true){
+			l_track = l_track + 1;
+			player.setImage(l_images[l_track]);
+			if(l_track == 2){
+				l_track = 0;
+			}
+		}	
+	}); //end Left key
+
+	//onHit functions
+	sjs.onHit("player","platform", function(x,y){
+		sjs.stoppedBy(x,y);
+		if(x.isAboveOf){
+			if(canJump == false){
+				canJump = true;
+				r_track = 0;
+				l_track = 0;
+				fuel = 15;
+				fuel_txt.setText("Fuel 15");
+			}
+		}
+	});
+
+	sjs.onHit("player",["right_screen",'left_screen',"top_screen"],function(x,y){
+		sjs.stoppedBy(x,y);
+	});
+
+	sjs.onHit("player","bottom_screen",function(x,y){
+		sjs.stoppedBy(x,y);
+		if(r_facing == true){
+			player.setImage("Images/r_idle.png");
+		} else {
+			player.setImage("Images/l_idle.png");
+		}
+		canJump = true;
+		r_track = 0;
+		l_track = 0;
+		fuel = 15;
+		fuel_txt.setText("Fuel 15")
+	});
+
+		sjs.onHit("enemy","bottom_screen",function(x,y){
+		sjs.stoppedBy(x,y);
+	});
+
+	sjs.onHit("enemy",["left_screen","right_screen"], function(x,y){
+		sjs.bounceOff(x,y);
+	}); 
+
+	sjs.onHit("enemy","platform",function(x,y){
+		if(x.isAboveOf(y) == true){
+			sjs.stoppedBy(x,y);
+		} else {
+			sjs.bounceOff(x,y);
+		}
+	});
+
+	var trash = new sjs.Text("trash",15,"orange");
+	trash.type = "trash";
+	trash.moveTo(720,10);
+	trash.fixed = true;
+	trash.setHeight(60);
+	trash.node.style.background = "green";
+	trash.node.style.borderTop = "4px solid yellow";
+
+	sjs.onHit("trash", ["platform","splatform","enemy","spikes","flag"], function(x,y){
+		y.destroy();
+		sjs.removeFromArray(level,y);
+	});
+} //end start
+
+function flag(){
+	var flag = new sjs.Image("Images/flag_bad.png");
+	level.push(flag);
+	flag.type = "flag";
+	flag.setHeight(80);
+	flag.center().offset(-sjs.gx,10);
+	flag.onMouseDown(function(){
+		flag.draggable();
+		flag.follow(sjs.mouse);
+	});
+}
+
+function floorSpikes(){
+	var floorSpikes = new sjs.Image("Images/floorspikes.png");
+	level.push(floorSpikes);
+	floorSpikes.type = "spikes";
+	floorSpikes.setHeight(30);
+	floorSpikes.center().offset(-sjs.gx,10);
+	floorSpikes.onMouseDown(function(){
+		floorSpikes.draggable();
+		floorSpikes.follow(sjs.mouse);
+	});
+}
+
+function ceilingSpikes(){
+	var ceilingSpikes = new sjs.Image("Images/ceilingspikes.png");
+	level.push(ceilingSpikes);
+	ceilingSpikes.type = "spikes";
+	ceilingSpikes.setHeight(30);
+	ceilingSpikes.center().offset(-sjs.gx,10);
+	ceilingSpikes.onMouseDown(function(){
+		ceilingSpikes.draggable();
+		ceilingSpikes.follow(sjs.mouse);
+	});
+}
+
+function lwallSpikes(){
+	var lwallSpikes = new sjs.Image("Images/lwallspikes.png");
+	level.push(lwallSpikes);
+	lwallSpikes.type = "spikes";
+	lwallSpikes.setWidth(30);
+	lwallSpikes.center().offset(-sjs.gx,10);
+	lwallSpikes.onMouseDown(function(){
+		lwallSpikes.draggable();
+		lwallSpikes.follow(sjs.mouse);
+	});
+}
+
+function rwallSpikes(){
+	var rwallSpikes = new sjs.Image("Images/rwallspikes.png");
+	level.push(rwallSpikes);
+	rwallSpikes.type = "spikes";
+	rwallSpikes.setWidth(30);
+	rwallSpikes.center().offset(-sjs.gx,10);
+	rwallSpikes.onMouseDown(function(){
+		rwallSpikes.draggable();
+		rwallSpikes.follow(sjs.mouse);
+	});
+}
+
+function platform(){
+	var platform = new sjs.Image("Images/platform.png");
+	level.push(platform);
+	platform.type = "platform";
+	platform.setHeight(30);
+	platform.center().offset(-sjs.gx,10);
+	platform.onMouseDown(function(){
+		platform.draggable();
+		platform.follow(sjs.mouse);
+	});
+}
+
+function splatform(){
+	var splatform = new sjs.Image("Images/splatform.png");
+	level.push(splatform);
+	splatform.type = "platform";
+	splatform.setSize(15,15);
+	splatform.center().offset(-sjs.gx,10);
+	splatform.onMouseDown(function(){
+		splatform.draggable();
+		splatform.follow(sjs.mouse);
+	});
+}
+
+function enemy(){
+	var enemy = new sjs.Image("Images/r_enemy.gif");
+	level.push(enemy);
+	enemy.type = "enemy";
+	enemy.center().offset(-sjs.gx,10);
+	enemy.setSize(60,60);
+	enemy.friction = 0;
+	enemy.noBounds = true;
+	enemy.setHFlipImages("Images/l_enemy.gif","Images/r_enemy.gif");
+	enemy.onMouseDown(function(){
+		enemy.follow(sjs.mouse);
+		enemy.removeGravity();
+		enemy.stop();
+	});
+	enemy.onMouseUp(function(){
+		enemy.unfollow(sjs.mouse);
+		enemy.setGravity();
+		enemy.pushHFacing();
+		enemy.accel = .5;
+	});
+}
+
+function wall(){
+	var wall = new sjs.Image("Images/wall.png");
+	level.push(wall);
+	wall.type = "platform";
+	wall.setWidth(30);
+	wall.center().offset(-sjs.gx,10);
+	wall.onMouseDown(function(){
+		wall.draggable();
+		platform.follow(sjs.mouse);
+	});
+}
+
+
+
+</script>
+</head>
+<body onload="start()">
+<h1> Jetpack </h1>
+<center> 
+<input type="image" src="Images/floorspikes.png" onclick="floorSpikes()">
+<input type="image" src="Images/lwallspikes.png" onclick="lwallSpikes()">
+<input type="image" src="Images/rwallspikes.png" onclick="rwallSpikes()">
+<input type="image" src="Images/ceilingspikes.png" onclick="ceilingSpikes()">
+<input type="image" src="Images/wall.png" onclick="wall()">
+<input type="image" src="Images/platform.png" onclick="platform()">
+<input type="image" src="Images/flag_bad.png" onclick="flag()">
+<input type="image" src="Images/splatform.png" onclick="splatform()">
+<input type="image" src="Images/r_enemy.gif" onclick="enemy()">
+</center>
+
+<div id="target" style="margin:auto;background:grey;"></div>
+<br/>
+<div id="output" style="margin:0 50 0 50;"></div>
+<br/><br/> 
+</body>
+</html>

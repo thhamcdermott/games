@@ -1,0 +1,33 @@
+<html>
+<head>
+<title> You Win! </title>
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+function start(){
+sjs.open("target",500,400);
+
+var win_txt = new sjs.Text("You Win!",70,"yellow");
+win_txt.center().offset(0,-50);
+
+var restartBtn = new sjs.Button("Back to Start", function(){
+	window.location = "index.html";
+}); restartBtn.center().bottom().offset(0,-40);
+
+var score_txt = new sjs.Text("Score: 0", 22,"darkorange");
+score_txt.setText("Score: "+localStorage.getItem("score"));
+
+if(localStorage.getItem("score") == 14){
+	var trueEnding_txt = new sjs.Text("You got all the points!",30,"purple");
+	trueEnding_txt.center().offset(0,50);
+}
+
+
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> You Win! </h1>
+
+<div id="target" style="margin:auto;background:lightblue;"></div>
+</body>
+</html>

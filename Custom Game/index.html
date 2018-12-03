@@ -1,0 +1,39 @@
+<html>
+<head>
+<title> Jetpack </title>
+<script src="https://simplycodingcourses.com/files/simply.js"></script>
+<script>
+function start(){
+sjs.open("target",500,400);
+
+	var jetpack_txt = new sjs.Text("Jetpack",100,"green");
+	jetpack_txt.centerH().offset(0,30);
+
+	var howToPlay_txt = new sjs.Text("Avoid the Enemies and Spikes!",20,"white");
+	howToPlay_txt.center();
+
+	var hTP2_txt = new sjs.Text("Press X to Stab, Space to Jump, and Up to Jetpack in the Air",17,"white"); 
+	hTP2_txt.center().offset(0,80);
+
+	var hTP3_txt = new sjs.Text("Reach One of the Flags to Win!",20,"white");
+	hTP3_txt.center().offset(0,40);
+
+	var warning_txt = new sjs.Text("Warning: Hard",30,"red");
+	warning_txt.offset(80,323);
+	
+	var startBtn = new sjs.Button("Start",function(){
+		window.location = "level1.html";
+	}); startBtn.center().offset(80,140);
+
+	var me_txt = new sjs.Text("Made by Thomas McDermott",20,"lightblue");
+	me_txt.center().bottom();
+
+} //end start
+</script>
+</head>
+<body onload="start()">
+<h1> Jetpack </h1>
+
+<div id="target" style="margin:auto;background:black;"></div>
+</body>
+</html>
